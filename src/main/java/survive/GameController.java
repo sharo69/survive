@@ -51,7 +51,7 @@ public class GameController {
     }
 
     @RequestMapping(value = "/{gameId}/player/{playerId}", method = RequestMethod.GET)
-    public Map<String, Object> addPlayer(@PathVariable long gameId, @PathVariable long playerId) {
+    public Map<String, Object> getPlayer(@PathVariable long gameId, @PathVariable long playerId) {
         Map<String, Object> result = new HashMap<>();
 
         Game g = gameRepository.findOne(gameId);
@@ -63,7 +63,7 @@ public class GameController {
     }
 
     @RequestMapping(value = "/{gameId}/player/{playerId}/move", method = RequestMethod.POST)
-    public Player visit(@PathVariable long gameId, @PathVariable long playerId,@RequestParam int x, @RequestParam int y) {
+    public Player move(@PathVariable long gameId, @PathVariable long playerId,@RequestParam int x, @RequestParam int y) {
         Player p = playerRepository.findOne(playerId);
         Game g = gameRepository.findOne(gameId);
         Zone z = g.findZone(x,y);
